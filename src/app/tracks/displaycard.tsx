@@ -4,7 +4,7 @@ import Image from "next/image"
 
 
 export default function DisplayCard({ img, maintitle, popularity, artists, album }: SpotifyTrack) {
-    const defaultImg = "/Donda.png"
+    const defaultImg = "/images/Donda.png"
 
     return (
         <Card className="w-1/6 bg-gray-50 dark:bg-black dark:border-white/[0.2] border-black/[0.1] rounded-xl p-1 border text-white flex-shrink-0 ">

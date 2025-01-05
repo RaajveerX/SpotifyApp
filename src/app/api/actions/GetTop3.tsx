@@ -10,7 +10,7 @@ const examples: CategoryCard[] = [
         id: 0,
         "title": "Albums",
         "description": "Explore your top albums",
-        "img": "../After-Hours.jpg",
+        "img": "/images/After-Hours.jpg",
         "buttontitle": "Albums",
         "alt": "after-hours album cover"
     },
@@ -18,7 +18,7 @@ const examples: CategoryCard[] = [
         id: 1,
         "title": "Tracks",
         "description": "Explore your top tracks",
-        "img": "/asap-rocky.jpg",
+        "img": "/images/asap-rocky.jpg",
         "buttontitle": "Tracks",
         "alt": "tailor-swif song cover"
     },
@@ -26,7 +26,7 @@ const examples: CategoryCard[] = [
         id: 2,
         "title": "Artists",
         "description": "Explore your top artists",
-        "img": "/frankocean.png",
+        "img": "/images/frankocean.png",
         "buttontitle": "Artists",
         "alt": "frank-ocean singing"
     }
