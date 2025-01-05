@@ -22,8 +22,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     const session = await getServerSession();
 
     return (
-        <html lang="en" data-theme="dark">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
+        <html lang="en" className="dark">
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full dark`} >
                 <div className="mobile-warning">
                     This site is currently optimized for desktop. Please switch to a desktop view for the best experience.
                 </div>
