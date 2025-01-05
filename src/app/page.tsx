@@ -42,7 +42,6 @@ function SpotlightLogin() {
                     </Button>
                 }
 
-
                 <p className="mt-8 font-thin text-base text-neutral-300 text-center justify-item">
                     Powered by OAuth 2.0
                 </p>
