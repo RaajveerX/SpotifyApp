@@ -1,100 +1,76 @@
 "use client";
 import DisplayCard from './displaycard';
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { LampContainer } from "../../components/ui/lamp";
-import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
+import Link from 'next/link';
+import { fetchTopAlbums } from '../api/actions/GetAlbums';
 
-const albumexamples = [
-    {
-      "img": "/After-Hours.jpg",
-      "imgalt": "After Hours album cover",
-      "maintitle": "After Hours",
-      "popularity": "95%",
-      "genres": ["Rnb", "Pop"],
-      "totaltracks": "14",
-      "artistname": "The Weeknd"
-    },
-    {
-      "img": "/SZA-SOS.png",
-      "imgalt": "SOS album cover",
-      "maintitle": "SOS",
-      "popularity": "98%",
-      "genres": ["Rnb"],
-      "totaltracks": "23",
-      "artistname": "SZA"
-    },
-    {
-      "img": "/Drake-Certified-Lover-Boy.png",
-      "imgalt": "Certified Lover Boy album cover",
-      "maintitle": "Certified Lover Boy",
-      "popularity": "92%",
-      "genres": ["Hip-Hop", "Rnb"],
-      "totaltracks": "21",
-      "artistname": "Drake"
-    },
-    {
-      "img": "/Donda.png",
-      "imgalt": "Donda album cover",
-      "maintitle": "Donda",
-      "popularity": "88%",
-      "genres": ["Hip-Hop", "Gospel"],
-      "totaltracks": "27",
-      "artistname": "Kanye West"
-    },
-    {
-      "img": "/planet-her.jpg",
-      "imgalt": "Planet Her album cover",
-      "maintitle": "Planet Her",
-      "popularity": "89%",
-      "genres": ["Hip-Hop", "Rnb", "Pop"],
-      "totaltracks": "19",
-      "artistname": "Doja Cat"
-    },
-    {
-      "img": "/igor.jpeg",
-      "imgalt": "Igor album cover",
-      "maintitle": "Igor",
-      "popularity": "86%",
-      "genres": ["Hip-Hop", "Alternative"],
-      "totaltracks": "12",
-      "artistname": "Tyler, the Creator"
-    }
-  ]
 
-export default function Albums() {
+function SliderWithMarks() {
+
+    return (
+        <div className="flex justify-around text-white font-light w-full">
+            <span>1 year</span>
+            <span>6 months</span>
+            <span>1 month</span>
+        </div>
+    );
+}
+
+
+export default function Tracks() {
+    const [lampFinished, setLampFinished] = useState(false);
+    const [albums, setAlbums] = useState<SpotifyAlbum[]>([])
+    const [sliderValue, setSliderValue] = useState([50]);
+
+    // Fetch tracks based on the value of the slider
+    useEffect(() => {
+        const fetchAlbums = async () => {
+            const response = await fetchTopAlbums(20, sliderValue[0]);
+            setAlbums(response)
+        };
+        fetchAlbums();
+
+    }, [sliderValue])
+
+    // Trigger the tracks to display after lamp animation finishes
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLampFinished(true);
+        }, 1200);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <div className="relative min-h-screen">
-            {/* LampContainer as a background */}
             <div className="absolute inset-0 pointer-events-none">
-                <LampContainer title='Your Top Albums' />
+                <LampContainer title='Your Top Albums' fromColor="from-cyan-500" toColor="to-cyan-500" />
             </div>
-            {/* Scrollable horizontal flex container */}
-            <div className="relative min-h-screen flex flex-col items-center justify-center p-5">
-                {/* Wrapper to make the flex container scroll horizontally */}
-                <div className="w-full overflow-x-scroll ">  {/* Hides default scrollbar */}
-                    <div className="flex flex-nowrap gap-5 p-4 mt-20">
-                        {albumexamples.map((album)=>(
+            <div className="relative w-full min-h-screen flex flex-col items-center justify-center p-5">
+                <div className="w-full overflow-x-scroll scrollbar-width-none">
+                    <div
+                        className="flex flex-nowrap gap-5 mb-10">
+                        {lampFinished && albums.map((album) => (
                             <DisplayCard
-                            img={album.img}
-                            imgalt={album.imgalt}
-                            maintitle={album.maintitle}
-                            artistname={album.artistname}
-                            totaltracks={album.totaltracks}
-                            genres={album.genres}
-                            popularity={album.popularity}
-                            className="flex-shrink-0"
-                        />
-
+                                key={album.maintitle}
+                                img={album.img}
+                                maintitle={album.maintitle}
+                                artists={album.artists}
+                                totalTracks={album.totalTracks}
+                            />
                         ))}
                     </div>
                 </div>
-                {/* Add spacing before the slider */}
-                <div className="flex flex-col pt-5 w-full items-center justify-center">
-                    <Slider defaultValue={[50]} max={100} step={1} className="w-3/4 mx-auto justify-end" />
-                    <p className='text-white text-center mt-10 font-light'>Slide to move the timeframe</p>
-                    <p className='text-white text-center mt-2 font-thin'>1 year - 6 months - 1 month</p>
-                    <Button variant={"link"} className="mt- w-1/6 border-dotted text-white" size={"lg"}>Explore a different area</Button>
+                <div className="fixed bottom-5 flex flex-col pt-5 w-full items-center justify-center bg-">
+                    <Slider value={sliderValue} max={100} step={50} min={0} className="w-4/6 mb-4" onValueChange={(value) => setSliderValue(value)} />
+                    <SliderWithMarks />
+                    <p className="text-white text-center mt-2 font-light">Move Slider To Change Timeframe</p>
+                    <Link href="/categories" className="flex justify-center">
+                        <Button variant="link" className="mt-2 w-1/6 text-white" size="lg">Explore a different area</Button>
+                    </Link>
                 </div>
             </div>
         </div>
