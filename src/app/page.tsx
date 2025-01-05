@@ -3,7 +3,6 @@
 import React from "react";
 import { Spotlight } from "../components/ui/spotlight"
 import { Button } from "@/components/ui/button"
-import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import SpotifyLogo from "@/components/ui/SpotifyLogo";
