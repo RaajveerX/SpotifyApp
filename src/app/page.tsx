@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
+import SpotifyLogo from "@/components/ui/SpotifyLogo";
 
 function SpotlightLogin() {
 
@@ -36,7 +37,9 @@ function SpotlightLogin() {
                     :
                     <Button variant={"outline"} className="mt-8 max-w-full" size={"lg"} onClick={() => signIn('spotify', { callbackUrl: "/categories" })}>
                         Login with
-                        <Image className="m-2" src={"Spotify_Full_Logo_RGB_Green.png"} alt="Spotify Logo" width={100} height={100}></Image>
+                        {/* <Image className="m-2" src={"/Spotify_Full_Logo_RGB_Green.png"} alt="Spotify Logo" width={"100"} height={"100"}/> */}
+                        <SpotifyLogo/>
+                        Spotify
                     </Button>
                 }
 
