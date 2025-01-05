@@ -20,7 +20,7 @@ function SliderWithMarks() {
 }
 
 
-export default function Tracks() {
+export default function Page() {
     const [lampFinished, setLampFinished] = useState(false);
     const [tracks, setTracks] = useState<SpotifyTrack[]>([])
     const [sliderValue, setSliderValue] = useState([50]);
