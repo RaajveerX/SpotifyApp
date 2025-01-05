@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button"
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import SpotifyLogo from "@/components/ui/SpotifyLogo";
-
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Terminal } from "lucide-react"
 
 function SpotlightLogin() {
 
@@ -14,6 +15,8 @@ function SpotlightLogin() {
 
 
     return (
+
+        
         <div className="h-screen w-full rounded-md flex md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-auto">
             <Spotlight
                 className="-top-40 left-0 md:left-60 md:-top-20"
@@ -47,6 +50,14 @@ function SpotlightLogin() {
                     Powered by OAuth 2.0
                 </p>
             </div>
+            <Alert className="fixed bottom-5 left-5 z-10 h-50 w-1/2">
+                    <Terminal className="h-4 w-4" />
+                    <AlertTitle>Hi there!</AlertTitle>
+                    <AlertDescription>
+                    This app is currently in dev mode and is limited to 25 registered Spotify users, due to constraints of the Spotify API. <br></br>
+                    If you would like to try this out, please shoot me an email at raajveersokhi@gmail.com :)
+                    </AlertDescription>
+            </Alert>
         </div>
     );
 }
