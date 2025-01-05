@@ -29,7 +29,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <div className="mobile-warning">
                     This site is currently optimized for desktop. Please switch to a desktop view for the best experience.
                 </div>
-                <Alert className="fixed bottom-5 z-10 h-50 w-1/2">
+                <Alert className="fixed bottom-5 left-5 z-10 h-50 w-1/2">
                     <Terminal className="h-4 w-4" />
                     <AlertTitle>Hi there!</AlertTitle>
                     <AlertDescription>
