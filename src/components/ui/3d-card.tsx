@@ -10,6 +10,7 @@ import React, {
   useRef,
   useEffect,
 } from "react";
+import { Toaster } from "./toaster";
 
 const MouseEnterContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
@@ -71,6 +72,7 @@ export const CardContainer = ({
           }}
         >
           {children}
+          <Toaster></Toaster>
         </div>
       </div>
     </MouseEnterContext.Provider>
