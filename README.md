@@ -1,5 +1,5 @@
 # Spotify Analyzer
-An enterprise app that can be used to manage dark store inventory
+Access your top tracks, albums, and artists while adjusting the timeframe (1 year, 6 months, 1 month)
 
 ## Tech Stack
 - Backend: Spotify API, Next, NextAuth for secure authentication
