@@ -11,10 +11,10 @@ Access your top tracks, albums, and artists while adjusting the timeframe (1 yea
 
 ## Note
 - The App is restricted to registered users only due to constraints of the Spotify API. Working on getting the limit extended. If you would like to try this out, please send me an email at raajveersokhi@gmail.com :)
-  
 
 ## Live Link
-https://spotify-analyzer-pi.vercel.app/
+![SpotifyAnalyzerSDiagram](https://github.com/user-attachments/assets/628c1521-1bb1-42a2-9f13-919567bafdf2)
+
 
 ## App Preview
 https://github.com/user-attachments/assets/203d13a5-b3c7-4f1c-ae45-1d497b222f52
